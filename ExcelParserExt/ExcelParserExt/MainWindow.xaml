@@ -14,7 +14,6 @@
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -23,16 +22,11 @@
                 <ColumnDefinition Width="10"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-
             <TextBox x:Name="SheetName">Json$</TextBox>
             <TextBox x:Name="FilePath" Grid.Column="2"></TextBox>
             <Button x:Name="OpenFileButton" Grid.Column="4" Width="100px" Click="OpenFileButton_OnClick">Open File</Button>
-
         </Grid>
-        
         <TextBox x:Name="Result" Grid.Row="2"></TextBox>
-
         <TextBox  Grid.Row="4">http://www.microsoft.com/en-us/download/confirmation.aspx?id=13255</TextBox>
-        
     </Grid>
 </Window>
