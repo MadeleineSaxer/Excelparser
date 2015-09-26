@@ -1,7 +1,6 @@
 ﻿#region Usings
 
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Linq;
@@ -39,32 +38,9 @@ namespace ExcelParserExt
             }
         }
 
-        private void ReadFile( String path )
+        private DataSet Parse( String fileName, String sheetName )
         {
-            var data = Helper.Parse( path, SheetName.Text );
-            var result = ( from DataRow row in data.Tables[0].Rows
-                           select new
-                           {
-                               url = row[0], url_min = row[1], size = row[8], de = new
-                               {
-                                   title = row[2], desc = row[3], caption = row[4]
-                               },
-                               en = new
-                               {
-                                   title = row[5], desc = row[6], caption = row[7]
-                               }
-                           } ).Cast<Object>()
-                              .ToList();
-            var res = JsonConvert.SerializeObject( result, Formatting.Indented );
-            Result.Text = res;
-        }
-    }
-
-    public static class Helper
-    {
-        public static DataSet Parse( String fileName, String sheetName )
-        {
-            var connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties=Excel 12.0;";
+            var connectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={fileName};Extended Properties=Excel 12.0;";
 
             var data = new DataSet();
             using ( var con = new OleDbConnection( connectionString ) )
@@ -78,6 +54,33 @@ namespace ExcelParserExt
             }
 
             return data;
+        }
+
+        private void ReadFile( String path )
+        {
+            var data = Parse( path, SheetName.Text );
+            var result = ( from DataRow row in data.Tables[0].Rows
+                           select new
+                           {
+                               url = row[0],
+                               url_min = row[1],
+                               size = row[8],
+                               de = new
+                               {
+                                   title = row[2],
+                                   desc = row[3],
+                                   caption = row[4]
+                               },
+                               en = new
+                               {
+                                   title = row[5],
+                                   desc = row[6],
+                                   caption = row[7]
+                               }
+                           } ).Cast<Object>()
+                              .ToList();
+            var res = JsonConvert.SerializeObject( result, Formatting.Indented );
+            Result.Text = res;
         }
     }
 }
