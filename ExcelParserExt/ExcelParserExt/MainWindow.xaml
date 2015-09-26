@@ -1,0 +1,34 @@
+﻿<Window x:Class="ExcelParserExt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExcelParserExt"
+        mc:Ignorable="d"
+        Title="XLSX 2 JSON" Height="600" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="10"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="10"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="SheetName">Json$</TextBox>
+            <TextBox x:Name="FilePath" Grid.Column="2"></TextBox>
+            <Button x:Name="OpenFileButton" Grid.Column="4" Width="100px" Click="OpenFileButton_OnClick">Open File</Button>
+
+        </Grid>
+        
+        <TextBox x:Name="Result" Grid.Row="2"></TextBox>
+        
+    </Grid>
+</Window>
