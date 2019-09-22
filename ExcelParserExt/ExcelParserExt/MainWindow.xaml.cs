@@ -65,6 +65,7 @@ namespace ExcelParserExt
                                url = row[0],
                                url_min = row[1],
                                size = row[8],
+                               sold = row[9].ToString() == "true",
                                de = new
                                {
                                    title = row[2],
